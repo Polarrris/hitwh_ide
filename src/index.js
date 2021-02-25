@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import { routes } from "./Router";
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Switch>
+      {
+        routes.map((item)=>{return <Route key={item.path} path={item.path} component={item.component}/>})
+      }
+      <Redirect from="/" to="/home" exact/>
+      <Redirect to="/404"/>
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
 
